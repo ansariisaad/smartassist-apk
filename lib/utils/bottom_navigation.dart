@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get/get.dart'; 
 import 'package:smartassist/config/component/color/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter/services.dart';
-import 'package:smartassist/pages/navbar_page/app_setting.dart';
-import 'package:smartassist/pages/navbar_page/call_analytics.dart';
-import 'package:smartassist/pages/navbar_page/call_logs.dart';
+import 'package:flutter/services.dart'; 
+import 'package:smartassist/pages/navbar_page/call_analytics.dart'; 
 import 'package:smartassist/pages/navbar_page/favorite.dart';
 import 'package:smartassist/pages/navbar_page/leads_all.dart';
-import 'package:smartassist/pages/navbar_page/logout_page.dart';
-import 'package:smartassist/pages/navbar_page/my_teams.dart';
-import 'package:smartassist/widgets/profile_screen.dart';
+import 'package:smartassist/pages/navbar_page/logout_page.dart'; 
 
 // Import with alias to avoid conflicts
 import 'package:smartassist/utils/navigation_controller.dart' as nav_utils;
@@ -65,6 +60,62 @@ class BottomNavigation extends StatelessWidget {
             // ];
 
             // Insert Teams navigation only for SM role
+            // if (controller.userRole.value == "SM") {
+            //   navItems.add(
+            //     _buildNavItem(
+            //       icon: Icons.people_alt_outlined,
+            //       label: 'My Teams',
+            //       index: 0,
+            //       isIcon: true,
+            //       isImg: false,
+            //     ),
+            //   );
+            //   // Home comes second at index 1
+            //   navItems.add(
+            //     _buildNavItem(
+            //       icon: Icons.home,
+            //       label: 'Home',
+            //       index: 1,
+            //       isIcon: true,
+            //       isImg: false,
+            //     ),
+            //   );
+            // }
+
+            // if (controller.userRole.value == "SM") {
+            //   // SM users: show icon-based Calendar nav item
+            //   navItems.add(
+            //     _buildNavItem(
+            //       icon: Icons.people_alt_outlined,
+            //       label: 'My Calendar',
+            //       index: 2,
+            //       isIcon: true,
+            //       img: Image.asset('assets/calendar.png', fit: BoxFit.contain),
+            //     ),
+            //   );
+            // } else {
+            //   // Other users: show image-based Calendar nav item
+            //   navItems.add(
+            //     _buildNavItem(
+            //       isImg: true,
+            //       isIcon: false,
+            //       img: Image.asset('assets/calendar.png', fit: BoxFit.contain),
+            //       label: 'Calendar',
+            //       index: 1,
+            //     ),
+            //   );
+
+            //   navItems.add(
+            //     _buildNavItem(
+            //       icon: Icons.home,
+            //       label: 'Home',
+            //       index: 0,
+            //       isIcon: true,
+            //       isImg: false,
+            //     ),
+            //   );
+            // }
+
             if (controller.userRole.value == "SM") {
               navItems.add(
                 _buildNavItem(
@@ -75,7 +126,6 @@ class BottomNavigation extends StatelessWidget {
                   isImg: false,
                 ),
               );
-              // Home comes second at index 1
               navItems.add(
                 _buildNavItem(
                   icon: Icons.home,
@@ -85,10 +135,6 @@ class BottomNavigation extends StatelessWidget {
                   isImg: false,
                 ),
               );
-            }
-
-            if (controller.userRole.value == "SM") {
-              // SM users: show icon-based Calendar nav item
               navItems.add(
                 _buildNavItem(
                   icon: Icons.people_alt_outlined,
@@ -99,24 +145,22 @@ class BottomNavigation extends StatelessWidget {
                 ),
               );
             } else {
-              // Other users: show image-based Calendar nav item
+              navItems.add(
+                _buildNavItem(
+                  icon: Icons.home,
+                  label: 'Home',
+                  index: 1,
+                  isIcon: true,
+                  isImg: false,
+                ),
+              );
               navItems.add(
                 _buildNavItem(
                   isImg: true,
                   isIcon: false,
                   img: Image.asset('assets/calendar.png', fit: BoxFit.contain),
                   label: 'Calendar',
-                  index: 1,
-                ),
-              );
-
-              navItems.add(
-                _buildNavItem(
-                  icon: Icons.home,
-                  label: 'Home',
                   index: 0,
-                  isIcon: true,
-                  isImg: false,
                 ),
               );
             }

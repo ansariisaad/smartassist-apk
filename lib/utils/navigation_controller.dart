@@ -82,26 +82,26 @@ class NavigationController extends GetxController {
 
   // Define screens corresponding to the navigation items
   List<Widget> get screens {
-    // Base screens that everyone sees
-    List<Widget> baseScreens = [
-      HomeScreen(greeting: '', leadId: ''),
-      // MyTeams screen is conditionally included below
-      CalendarWithTimeline(leadName: ''),
-    ];
+    late List<Widget> baseScreens;
+    late int _currentIndex;
 
-    // Insert MyTeams screen at index 1 only for SM role
-    // if (userRole.value == "SM") {
-    //   baseScreens.insert(1, const MyTeams());
-    // }
-
-    // Insert MyTeams screen only for SM role
     if (userRole.value == "SM") {
-      baseScreens.insert(0, const MyTeams());
-      baseScreens.insert(2, CalendarSm(leadName: ''));
+      baseScreens = [
+        const MyTeams(), // index 0
+        HomeScreen(greeting: '', leadId: ''), // index 1
+        CalendarSm(leadName: ''), // index 2
+      ];
+      // _currentIndex = 1; // Start with Home
     } else {
-      // Regular calendar screen for other roles
-      baseScreens.add(CalendarWithTimeline(leadName: ''));
+      baseScreens = [
+        CalendarWithTimeline(leadName: ''), // index 1
+        HomeScreen(greeting: '', leadId: ''), // index 0
+      ];
+      _currentIndex = 0; // Start with Home
     }
+
+    // selectedIndex.value = _currentIndex;
+    // mustafa.sayyed@ariantechsolutions.com
 
     return baseScreens;
   }
@@ -127,3 +127,25 @@ class NavigationController extends GetxController {
     }
   }
 }
+
+
+// Base screens that everyone sees
+    // List<Widget> baseScreens = [
+    //   HomeScreen(greeting: '', leadId: ''),
+    //   // MyTeams screen is conditionally included below
+    //   CalendarWithTimeline(leadName: ''),
+    // ];
+
+    // // Insert MyTeams screen at index 1 only for SM role
+    // if (userRole.value == "SM") {
+    //   baseScreens.insert(1, const MyTeams());
+    // }
+
+    // // Insert MyTeams screen only for SM role
+    // if (userRole.value == "SM") {
+    //   baseScreens.insert(0, const MyTeams());
+    //   baseScreens.insert(2, CalendarSm(leadName: ''));
+    // } else {
+    //   // Regular calendar screen for other roles
+    //   baseScreens.add(CalendarWithTimeline(leadName: ''));
+    // }
